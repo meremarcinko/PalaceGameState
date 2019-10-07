@@ -1,5 +1,6 @@
 package com.example.palacegamestate;
 
+import java.util.ArrayList;
 
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
