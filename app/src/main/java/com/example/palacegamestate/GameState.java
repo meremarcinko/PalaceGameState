@@ -22,8 +22,8 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> pairs;
-    private
+    //private ArrayList<Pair> pairs;
+    //private
 
 
 }
