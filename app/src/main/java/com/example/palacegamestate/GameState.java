@@ -23,7 +23,30 @@ state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
     private ArrayList<Pair> pairs;
-    private
+    private int turn;
 
+    /* What do the methods do?
+       ◦ verify the move is a legal move for the current game state. If it’s not, return false.
+       ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
+    */
+    public boolean selectCards(int playerID) {
+        return false;
+    }
+
+    public boolean playCards(int playerID) {
+        return false;
+    }
+
+    public boolean changePalace(int playerID) {
+        return false;
+    }
+
+    public boolean confirmPalace(int playerID) {
+        return false;
+    }
+
+    public boolean takeDiscardPile() {
+        return false;
+    }
 
 }
