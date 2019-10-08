@@ -26,11 +26,12 @@ public class GameState {
     private ArrayList<Pair> pairs;
     private int turn;
 
+
     /* What do the methods do?
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
-    public boolean selectCards(int playerID) {
+    public boolean selectCards(int playerID, Card selectedCard) {
         return false;
     }
 
