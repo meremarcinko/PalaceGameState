@@ -85,15 +85,17 @@ public class GameState {
             discardPile.add(selectedCards.get(i));
         }
 
+        selectedCards.clear();
 
 
+
+        //bomb the discard pile if there at least 4 cards and the top four are of the same rank
         if (discardPile.size() >= 4) {
             if (discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-2).get_Card().getRank()
                 && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-3).get_Card().getRank()
                 && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-4).get_Card().getRank()) {
                     bombDiscardPile();
             }
-            // TODO: Andres needs to continue here
         }
         return false;
     }
@@ -141,8 +143,12 @@ public class GameState {
         if (discardPile.isEmpty()) {
             return true;
         }
-        //TODO: finish this if statement
-        else if(/*card at top of discard pile is less than or equal to selectedCard OR card on top is a seven and it's lower*/) {
+
+        else if (discardPile.get(discardPile.size()-1).get_Card().getRank() <= selectedCard.get_Card().getRank()) {
+            return true;
+        }
+
+        else if (discardPile.get(discardPile.size()-1).get_Card().getRank() == Rank.SEVEN && selectedCard.get_Card().getRank() <= Rank.SEVEN) {
             return true;
         }
         return false;
@@ -154,7 +160,9 @@ public class GameState {
     private void bombDiscardPile () {
         discardPile.clear();
         for (Pair p : the_deck) {
-            //if (p.Loca) if we have a card in location discard pile, then update its location to trash
+            if (p.get_location() == Location.DISCARD_PILE) {
+                p.set_location(Location.DEAD_PILE);
+            }
         }
     }
 }
