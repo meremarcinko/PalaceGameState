@@ -29,8 +29,7 @@ public class GameState {
     /**
      * Constructor for the ojects in the GameState
      */
-    public GameState()
-    {
+    public GameState() {
         turn = 0;
     }
 
@@ -50,11 +49,10 @@ public class GameState {
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
 
-    private ArrayList<Pair> selectedCards = new ArrayList<Pair>();
-    private ArrayList<Pair> discardPile = new ArrayList<Pair>();
+    private ArrayList<Pair> selectedCards = new ArrayList<>();
+    private ArrayList<Pair> discardPile = new ArrayList<>();
 
     public boolean selectCards(int playerID, Pair userSelectedCard) {
-
         if (isLegal(userSelectedCard)) {
             if (selectedCards.size() == 0) {
                 selectedCards.add(userSelectedCard);
@@ -77,7 +75,7 @@ public class GameState {
 
 
         if (discardPile.size() >= 4) {
-            if
+            // TODO: Andres needs to continue here
         }
         return false;
     }
@@ -90,9 +88,7 @@ public class GameState {
      * @param playerID
      * @return
      */
-    public boolean changePalace(int playerID)
-    {
-
+    public boolean changePalace(int playerID) {
         return false;
     }
 
@@ -104,9 +100,7 @@ public class GameState {
      * @param playerID
      * @return
      */
-    public boolean confirmPalace(int playerID)
-    {
-
+    public boolean confirmPalace(int playerID) {
         return false;
     }
 
@@ -117,23 +111,18 @@ public class GameState {
      *
      * @return
      */
-    public boolean takeDiscardPile()
-    {
-
+    public boolean takeDiscardPile() {
         return false;
     }
 
     private boolean isLegal(Pair selectedCard) {
-
         if (discardPile.isEmpty()) {
             return true;
         }
-
         //TODO: finish this if statement
         else if(/*card at top of discard pile is less than or equal to selectedCard OR card on top is a seven and it's lower*/) {
             return true;
         }
         return false;
     }
-
 }
