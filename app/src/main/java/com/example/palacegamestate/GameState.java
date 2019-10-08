@@ -30,10 +30,12 @@ public class GameState {
     private int turn;
 
     /**
-     * Constructor for the ojects in the GameState
+     * Constructor for the objects in the GameState
      */
     public GameState() {
         initialize_the_deck();
+        shuffleTheDeck();
+        // TODO: dealTheDeck();
         turn = 0;
     }
 

@@ -11,12 +11,12 @@ public enum Rank
 	SEVEN(7),
 	EIGHT(8),
 	NINE(9),
-	JACK(11),
-	QUEEN(12),
-	KING(13),
-	ACE(14),
-	TWO(15),
-	TEN(16);
+	JACK(10),
+	QUEEN(11),
+	KING(12),
+	ACE(13),
+	TWO(14),
+	TEN(15);
 
 	public static final int THREE_INT =  3;
 	public static final int FOUR_INT =   4;
@@ -25,12 +25,12 @@ public enum Rank
 	public static final int SEVEN_INT =  7;
 	public static final int EIGHT_INT =  8;
 	public static final int NINE_INT =   9;
-	public static final int JACK_INT =  11;
-	public static final int QUEEN_INT = 12;
-	public static final int KING_INT =  13;
-	public static final int ACE_INT =   14;
-	public static final int TWO_INT =   15;
-	public static final int TEN_INT =   16;
+	public static final int JACK_INT =  10;
+	public static final int QUEEN_INT = 11;
+	public static final int KING_INT =  12;
+	public static final int ACE_INT =   13;
+	public static final int TWO_INT =   14;
+	public static final int TEN_INT =   15;
 
 	private int int_value;
 	Rank(int int_value) { this.int_value = int_value; }
