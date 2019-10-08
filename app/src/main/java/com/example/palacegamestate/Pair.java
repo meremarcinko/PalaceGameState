@@ -19,6 +19,6 @@ public class Pair
 	}
 
 	public Card get_card() { return(card); }
-
 	public Location get_location() { return(location); }
+	public void set_location(Location location) { this.location = location; }
 }
