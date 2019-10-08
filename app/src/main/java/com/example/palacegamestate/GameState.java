@@ -26,12 +26,30 @@ public class GameState {
     private ArrayList<Pair> pairs;
     private int turn;
 
+    /**
+     * Constructor for the ojects in the GameState
+     */
+    public GameState()
+    {
+        turn = 0;
+    }
+
+    /**
+     * shuffle Deck
+     *
+     * Method to shuffle the deck
+     */
+    //function wont be implemented until the arrayList for theDeck is made
+    public void shuffleTheDeck()
+    {
+        Collections.shuffle(theDeck);
+    }
 
     /* What do the methods do?
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
-    public boolean selectCards(int playerID, Card selectedCard) {
+    public boolean selectCards(int playerID) {
         return false;
     }
 
