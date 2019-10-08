@@ -26,7 +26,7 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> pairs = new ArrayList<Pair>(52);
+    private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private int turn;
 
     /**
@@ -45,7 +45,7 @@ public class GameState {
     //function wont be implemented until the arrayList for theDeck is made
     public void shuffleTheDeck()
     {
-        Collections.shuffle(theDeck);
+        Collections.shuffle(the_deck);
     }
 
     /* What do the methods do?
