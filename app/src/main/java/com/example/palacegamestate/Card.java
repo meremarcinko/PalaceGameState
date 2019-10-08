@@ -1,5 +1,6 @@
 package com.example.palacegamestate;
 
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
@@ -14,6 +15,11 @@ public class Card
 		this.suit = suit;
 		this.rank = rank;
 		this.image = image;
+	}
+
+	public void draw(Canvas c)
+	{
+		// TODO: Draw the Card's BitmapDrawable
 	}
 
 	public String toString()
@@ -64,7 +70,6 @@ public class Card
 				Log.d("Card.java:61", "ERROR: (rank) variable corrupted");
 				return null;
 		}
-
 		return_str += " of ";
 		switch(suit)
 		{

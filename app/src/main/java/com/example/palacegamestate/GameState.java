@@ -23,7 +23,7 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> pairs;
+    private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private int turn;
 
     /**
@@ -42,30 +42,97 @@ public class GameState {
     //function wont be implemented until the arrayList for theDeck is made
     public void shuffleTheDeck()
     {
-        Collections.shuffle(theDeck);
+        Collections.shuffle(the_deck);
     }
 
     /* What do the methods do?
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
-    public boolean selectCards(int playerID) {
+
+    private ArrayList<Pair> selectedCards = new ArrayList<Pair>();
+    private ArrayList<Pair> discardPile = new ArrayList<Pair>();
+
+    public boolean selectCards(int playerID, Pair userSelectedCard) {
+
+        if (isLegal(userSelectedCard)) {
+            if (selectedCards.size() == 0) {
+                selectedCards.add(userSelectedCard);
+                return true;
+            }
+            else if (!selectedCards.contains(userSelectedCard) && /*other cards are of the same rank*/) {
+                selectedCards.add(userSelectedCard);
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
     public boolean playCards(int playerID) {
+        for (int i = 0; i < selectedCards.size(); i++) {
+            discardPile.add(selectedCards.get(i));
+        }
+
+
+
+        if (discardPile.size() >= 4) {
+            if
+        }
         return false;
     }
 
-    public boolean changePalace(int playerID) {
+    /**
+     * changePalace
+     * method to let the user change their palace at the beginning of the
+     * game
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean changePalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean confirmPalace(int playerID) {
+    /**
+     * confirmPalace
+     *
+     * method that lets the user confirm their selected palace
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean confirmPalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean takeDiscardPile() {
+    /**
+     * takeDiscardPile
+     *
+     * method that lets the user take the dicard pile
+     *
+     * @return
+     */
+    public boolean takeDiscardPile()
+    {
+
+        return false;
+    }
+
+    private boolean isLegal(Pair selectedCard) {
+
+        if (discardPile.isEmpty()) {
+            return true;
+        }
+
+        //TODO: finish this if statement
+        else if(/*card at top of discard pile is less than or equal to selectedCard OR card on top is a seven and it's lower*/) {
+            return true;
+        }
         return false;
     }
 
