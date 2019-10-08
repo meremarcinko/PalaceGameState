@@ -91,6 +91,11 @@ public class GameState {
 
 
         if (discardPile.size() >= 4) {
+            if (discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-2).get_Card().getRank()
+                && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-3).get_Card().getRank()
+                && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-4).get_Card().getRank()) {
+                    bombDiscardPile();
+            }
             // TODO: Andres needs to continue here
         }
         return false;
@@ -140,5 +145,15 @@ public class GameState {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Empties the discardPile ArrayList, all cards in pair list with location DiscardPile get changed to Trash pile
+     */
+    private void bombDiscardPile () {
+        discardPile.clear();
+        for (Pair p : the_deck) {
+            //if (p.Loca) if we have a card in location discard pile, then update its location to trash
+        }
     }
 }
