@@ -91,4 +91,8 @@ public class Card
 		}
 		return(return_str);
 	}
+
+	public Rank getRank() {
+		return rank;
+	}
 }
