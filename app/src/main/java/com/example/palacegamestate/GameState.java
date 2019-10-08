@@ -2,6 +2,9 @@ package com.example.palacegamestate;
 
 import java.util.ArrayList;
 
+import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
+import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
+
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
 the game framework but it doesn't have to be for this assignment.) Your game state class'
@@ -102,11 +105,32 @@ public class GameState {
      * @return
      */
     public boolean changePalace(int playerID) {
-        for(int i = 0; i<the_deck.size();i++){
+        /*An array to store the selected cards in the players
+        * hand that will be changed with the palacecards*/
+        ArrayList<Pair> handPairs = new ArrayList<>();
+        /*An array to store the selected cards in the players palace */
+        ArrayList<Pair> palacePairs = new ArrayList<>();
 
+        /*iterate through the deck to find the Pairs
+        * that are either in the player's hand or palace
+        * and then adds these to the corresponding arraylist*/
+        for(Pair p:the_deck){
+            if(p.get_location()== PLAYER_ONE_HAND && selectedCards.contains(p)){
+                handPairs.add(p);
+            }
+            else if(p.get_location()==PLAYER_ONE_UPPER_PALACE && selectedCards.contains(p)){
+                palacePairs.add(p);
+            }
+            else{
+                return false;
+            }
+        }
+        for(int i = 0; i<handPairs.size(); i++){
+            handPairs.get(i).set_location(PLAYER_ONE_UPPER_PALACE);
+            palacePairs.get(i).set_location(PLAYER_ONE_HAND);
         }
 
-        return false;
+        return true;
     }
 
     /**
