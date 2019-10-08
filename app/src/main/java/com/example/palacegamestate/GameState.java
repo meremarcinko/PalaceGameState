@@ -1,6 +1,9 @@
 package com.example.palacegamestate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
@@ -23,8 +26,27 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> pairs;
+    private ArrayList<Pair> pairs = new ArrayList<Pair>(52);
     private int turn;
+
+    /**
+     * Constructor for the ojects in the GameState
+     */
+    public GameState()
+    {
+        turn = 0;
+    }
+
+    /**
+     * shuffle Deck
+     *
+     * Method to shuffle the deck
+     */
+    //function wont be implemented until the arrayList for theDeck is made
+    public void shuffleTheDeck()
+    {
+        Collections.shuffle(theDeck);
+    }
 
     /* What do the methods do?
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
