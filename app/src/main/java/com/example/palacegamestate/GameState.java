@@ -102,6 +102,10 @@ public class GameState {
      * @return
      */
     public boolean changePalace(int playerID) {
+        for(int i = 0; i<the_deck.size();i++){
+
+        }
+
         return false;
     }
 
