@@ -26,7 +26,7 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> pairs = new ArrayList<Pair>(52);
+    private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private int turn;
 
     /**
@@ -45,7 +45,7 @@ public class GameState {
     //function wont be implemented until the arrayList for theDeck is made
     public void shuffleTheDeck()
     {
-        Collections.shuffle(theDeck);
+        Collections.shuffle(the_deck);
     }
 
     /* What do the methods do?
@@ -85,15 +85,44 @@ public class GameState {
         return false;
     }
 
-    public boolean changePalace(int playerID) {
+    /**
+     * changePalace
+     * method to let the user change their palace at the beginning of the
+     * game
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean changePalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean confirmPalace(int playerID) {
+    /**
+     * confirmPalace
+     *
+     * method that lets the user confirm their selected palace
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean confirmPalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean takeDiscardPile() {
+    /**
+     * takeDiscardPile
+     *
+     * method that lets the user take the dicard pile
+     *
+     * @return
+     */
+    public boolean takeDiscardPile()
+    {
+
         return false;
     }
 
