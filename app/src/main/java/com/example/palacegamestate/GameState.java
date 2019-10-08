@@ -27,10 +27,23 @@ public class GameState {
     private int turn;
 
     /**
-     * Constructor for the ojects in the GameState
+     * Constructor for the objects in the GameState
      */
     public GameState() {
+        initialize_the_deck();
+        shuffleTheDeck();
+        // TODO: dealTheDeck();
         turn = 0;
+    }
+
+    /**
+     *
+     */
+    private void initialize_the_deck()
+    {
+        for(int i = Rank.THREE_INT; i <= Rank.TEN_INT; i++)
+            for(int j = Suit.SPADES_INT; j <= Suit.HEARTS_INT; j++)
+                the_deck.add(new Pair(new Card(Rank.int_to_rank(i), Suit.int_to_suit(j)), Location.DRAW_PILE));
     }
 
     /**
