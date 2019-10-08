@@ -52,23 +52,75 @@ public class GameState {
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
-    public boolean selectCards(int playerID) {
+
+    /**
+     *
+     * selectCards
+     * method that allows the user to select the card
+     *
+     * @param playerID
+     * @return
+     *
+     */
+    public boolean selectCards(int playerID)
+    {
+
         return false;
     }
 
-    public boolean playCards(int playerID) {
+
+    /**
+     *
+     * playCard
+     * method that allows the user to play the card
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean playCards(int playerID)
+    {
+
         return false;
     }
 
-    public boolean changePalace(int playerID) {
+    /**
+     * changePalace
+     * method to let the user change their palace at the beginning of the
+     * game
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean changePalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean confirmPalace(int playerID) {
+    /**
+     * confirmPalace
+     *
+     * method that lets the user confirm their selected palace
+     *
+     * @param playerID
+     * @return
+     */
+    public boolean confirmPalace(int playerID)
+    {
+
         return false;
     }
 
-    public boolean takeDiscardPile() {
+    /**
+     * takeDiscardPile
+     *
+     * method that lets the user take the dicard pile
+     *
+     * @return
+     */
+    public boolean takeDiscardPile()
+    {
+        
         return false;
     }
 
