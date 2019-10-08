@@ -8,13 +8,13 @@ public class Card
 {
 	private Suit suit;
 	private Rank rank;
-	private BitmapDrawable image;
+//	private BitmapDrawable image;
 
-	public Card(Suit suit, Rank rank, BitmapDrawable image)
+	public Card(Rank rank, Suit suit) /*BitmapDrawable image)*/
 	{
 		this.suit = suit;
 		this.rank = rank;
-		this.image = image;
+//		this.image = image;
 	}
 
 	public void draw(Canvas c)
