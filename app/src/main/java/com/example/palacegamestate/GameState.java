@@ -1,9 +1,6 @@
 package com.example.palacegamestate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
@@ -110,6 +107,10 @@ public class GameState {
      * @return
      */
     public boolean changePalace(int playerID) {
+        for(int i = 0; i<the_deck.size();i++){
+
+        }
+
         return false;
     }
 
