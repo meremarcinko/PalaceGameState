@@ -31,6 +31,8 @@ public class GameState {
 
     private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private int turn;
+    private ArrayList<Pair> selectedCards = new ArrayList<>();
+    private ArrayList<Pair> discardPile = new ArrayList<>();
 
     /**
      * Constructor for the objects in the GameState
@@ -68,17 +70,20 @@ public class GameState {
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
 
-    private ArrayList<Pair> selectedCards = new ArrayList<>();
-    private ArrayList<Pair> discardPile = new ArrayList<>();
-
     public boolean selectCards(int playerID, Pair userSelectedCard) {
         if (isLegal(userSelectedCard)) {
             if (selectedCards.size() == 0) {
                 selectedCards.add(userSelectedCard);
                 return true;
             }
-            else if (!selectedCards.contains(userSelectedCard) && /*other cards are of the same rank*/) {
+            //also select the card if the other selected cards are of the same rank
+            else if (!selectedCards.contains(userSelectedCard) && userSelectedCard.get_card().getRank() == selectedCards.get(selectedCards.size()-1).get_card().getRank()) {
                 selectedCards.add(userSelectedCard);
+                return true;
+            }
+            //deselect a card that is already selected
+            else if (selectedCards.contains(userSelectedCard)) {
+                selectedCards.remove(userSelectedCard);
                 return true;
             }
             return false;
@@ -102,7 +107,8 @@ public class GameState {
         if (discardPile.size() >= 4) {
             if (discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-2).get_card().getRank()
                 && discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-3).get_card().getRank()
-                && discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-4).get_card().getRank()) {
+                && discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-4).get_card().getRank()
+                || discardPile.get(discardPile.size()-1).get_card().getRank() == Rank.TEN) {
                     bombDiscardPile();
             }
         }
@@ -164,8 +170,6 @@ public class GameState {
                 }
             }
         }
-
-
         return false;
     }
 
@@ -176,7 +180,8 @@ public class GameState {
      *
      * @return
      */
-    public boolean takeDiscardPile() {
+    public boolean takeDiscardPile(int playerID) {
+        //TODO place discard pile into hand of playerID
         return false;
     }
 
@@ -206,4 +211,8 @@ public class GameState {
             }
         }
     }
+
+   /* public String toString() {
+        //TODO implement toString method which converts all of GameState's data to a String
+    }*/
 }
