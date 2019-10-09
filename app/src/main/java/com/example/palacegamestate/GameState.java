@@ -88,8 +88,10 @@ public class GameState {
             discardPile.add(selectedCards.get(i));
         }
         
-        for (Pair p : selectedCards) {
+        for (Pair p : the_deck) {
+            if (selectedCards.contains(p)) {
                 p.set_location(Location.DISCARD_PILE);
+            }
         }
 
         selectedCards.clear();
