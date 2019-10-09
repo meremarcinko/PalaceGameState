@@ -3,6 +3,7 @@ package com.example.palacegamestate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static com.example.palacegamestate.Location.DISCARD_PILE;
 import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
 import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
 import static com.example.palacegamestate.Location.PLAYER_TWO_HAND;
@@ -176,12 +177,39 @@ public class GameState {
     /**
      * takeDiscardPile
      *
-     * method that lets the user take the dicard pile
+     * reassigns location of cards in DISCARD_PILE to the hand of
+     * the user passed in the parameter. Also clears the discardPile
+     * ArrayList in GameState
      *
-     * @return
+     * @return true if discard pile isn't empty and the method was called by a valid player
      */
     public boolean takeDiscardPile(int playerID) {
-        //TODO place discard pile into hand of playerID
+
+        if (!discardPile.isEmpty()) {
+
+            if (playerID == 1) {
+
+                for (Pair p : the_deck) {
+
+                    if (p.get_location() == DISCARD_PILE) {
+                        p.set_location(PLAYER_ONE_HAND);
+                    }
+                }
+                discardPile.clear();
+                return true;
+
+            } else if (playerID == 2) {
+
+                for (Pair p : the_deck) {
+
+                    if (p.get_location() == DISCARD_PILE) {
+                        p.set_location(PLAYER_TWO_HAND);
+                    }
+                }
+                discardPile.clear();
+                return true;
+            }
+        }
         return false;
     }
 
