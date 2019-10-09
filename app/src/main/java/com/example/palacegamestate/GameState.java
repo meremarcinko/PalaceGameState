@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
 import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
+import static com.example.palacegamestate.Location.PLAYER_TWO_HAND;
+import static com.example.palacegamestate.Location.PLAYER_TWO_UPPER_PALACE;
 
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
@@ -113,33 +115,26 @@ public class GameState {
      */
     public boolean changePalace(int playerID) {
         /*An array to store the selected cards in the players
-        * hand that will be changed with the palacecards*/
-        ArrayList<Pair> handPairs = new ArrayList<>();
-        /*An array to store the selected cards in the players palace */
-        ArrayList<Pair> palacePairs = new ArrayList<>();
-
-        /*iterate through the deck to find the Pairs
-        * that are either in the player's hand or palace
-        * and then adds these to the corresponding arraylist*/
-        for(Pair p:the_deck){
-            if(p.get_location()== PLAYER_ONE_HAND && selectedCards.contains(p)){
-                handPairs.add(p);
-            }
-            else if(p.get_location()==PLAYER_ONE_UPPER_PALACE && selectedCards.contains(p)){
-                palacePairs.add(p);
-            }
-            else{
-                return false;
+         * hand that will be changed with the palacecards*/
+        if(playerID == 1){
+            for(Pair p: the_deck){
+                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
+                    p.set_location(PLAYER_ONE_HAND);
+                    return true;
+                }
             }
         }
-        for(int i = 0; i<handPairs.size(); i++){
-            handPairs.get(i).set_location(PLAYER_ONE_UPPER_PALACE);
-            palacePairs.get(i).set_location(PLAYER_ONE_HAND);
+        if(playerID == 2){
+            for(Pair p: the_deck){
+                if(p.get_location()== PLAYER_TWO_UPPER_PALACE){
+                    p.set_location(PLAYER_TWO_HAND);
+                    return true;
+                }
+            }
         }
+        return false;
 
-        return true;
     }
-
     /**
      * confirmPalace
      *
@@ -149,6 +144,24 @@ public class GameState {
      * @return
      */
     public boolean confirmPalace(int playerID) {
+        if (playerID == 1) {
+            for (Pair p : the_deck) {
+                if (p.get_location() == PLAYER_ONE_HAND && selectedCards.contains(p)) {
+                    p.set_location(PLAYER_ONE_UPPER_PALACE);
+                    return true;
+                }
+            }
+        }
+        else if(playerID==2){
+            for (Pair p : the_deck) {
+                if (p.get_location() == PLAYER_TWO_HAND && selectedCards.contains(p)) {
+                    p.set_location(PLAYER_TWO_UPPER_PALACE);
+                    return true;
+                }
+            }
+        }
+
+
         return false;
     }
 
