@@ -1,6 +1,7 @@
 package com.example.palacegamestate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
 import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
@@ -95,16 +96,13 @@ public class GameState {
                 p.set_location(Location.DISCARD_PILE);
             }
         }
-
         selectedCards.clear();
-
-
 
         //bomb the discard pile if there at least 4 cards and the top four are of the same rank
         if (discardPile.size() >= 4) {
-            if (discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-2).get_Card().getRank()
-                && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-3).get_Card().getRank()
-                && discardPile.get(discardPile.size()-1).get_Card().getRank() == discardPile.get(discardPile.size()-4).get_Card().getRank()) {
+            if (discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-2).get_card().getRank()
+                && discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-3).get_card().getRank()
+                && discardPile.get(discardPile.size()-1).get_card().getRank() == discardPile.get(discardPile.size()-4).get_card().getRank()) {
                     bombDiscardPile();
             }
         }
@@ -187,11 +185,11 @@ public class GameState {
             return true;
         }
 
-        else if (discardPile.get(discardPile.size()-1).get_Card().getRank() <= selectedCard.get_Card().getRank()) {
+        else if (discardPile.get(discardPile.size()-1).get_card().getRank().get_int_value() <= selectedCard.get_card().getRank().get_int_value()) {
             return true;
         }
 
-        else if (discardPile.get(discardPile.size()-1).get_Card().getRank() == Rank.SEVEN && selectedCard.get_Card().getRank() <= Rank.SEVEN) {
+        else if (discardPile.get(discardPile.size()-1).get_card().getRank() == Rank.SEVEN && (selectedCard.get_card().getRank().get_int_value() <= Rank.SEVEN_INT)) {
             return true;
         }
         return false;
