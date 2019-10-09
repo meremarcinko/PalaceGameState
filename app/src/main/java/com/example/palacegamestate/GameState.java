@@ -87,6 +87,10 @@ public class GameState {
         for (int i = 0; i < selectedCards.size(); i++) {
             discardPile.add(selectedCards.get(i));
         }
+        
+        for (Pair p : selectedCards) {
+                p.set_location(Location.DISCARD_PILE);
+        }
 
         selectedCards.clear();
 
