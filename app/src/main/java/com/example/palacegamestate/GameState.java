@@ -35,26 +35,21 @@ main play stage, etc.).
 state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
-    private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
-    private ArrayList<Pair> selectedCards = new ArrayList<>();
-    private ArrayList<Pair> discardPile = new ArrayList<>();
-    private ArrayList<Pair> hand1 = new ArrayList<>();
-    private ArrayList<Pair> hand2 = new ArrayList<>();
-    //player 1 lower palace, player 2 lower palace
-    private ArrayList<Pair> player1LP = new ArrayList<>();
-    private ArrayList<Pair> player2LP = new ArrayList<>();
-    //player 1 upper palace, player 2 upper palace
-    private ArrayList<Pair> player1UP = new ArrayList<>();
-    private ArrayList<Pair> player2UP = new ArrayList<>();
+    private ArrayList<Pair> the_deck;
+    private ArrayList<Pair> selectedCards;
+    private ArrayList<Pair> discardPile;
+
 
     private int turn;
-    private ArrayList<Pair> selectedCards = new ArrayList<>();
 
 
     /**
      * Constructor for the objects in the GameState
      */
     public GameState() {
+        the_deck = new ArrayList<>();
+        selectedCards = new ArrayList<>();
+        discardPile = new ArrayList<>();
         initialize_the_deck();
         shuffleTheDeck();
         // TODO: dealTheDeck();
@@ -166,16 +161,16 @@ public class GameState {
          * hand that will be changed with the palacecards*/
         if(playerID == 1){
             for(Pair p: the_deck){
-                if(p.get_location()== Pair.Location.PLAYER_ONE_UPPER_PALACE){
-                    p.set_location(Pair.Location.PLAYER_ONE_HAND);
+                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
+                    p.set_location(PLAYER_ONE_HAND);
                     return true;
                 }
             }
         }
         if(playerID == 2){
             for(Pair p: the_deck){
-                if(p.get_location()== Pair.Location.PLAYER_TWO_UPPER_PALACE){
-                    p.set_location(Pair.Location.PLAYER_TWO_HAND);
+                if(p.get_location() == PLAYER_TWO_UPPER_PALACE){
+                    p.set_location(PLAYER_TWO_HAND);
                     return true;
                 }
             }
@@ -195,16 +190,16 @@ public class GameState {
     public boolean confirmPalace(int playerID) {
         if (playerID == 1) {
             for (Pair p : the_deck) {
-                if (p.get_location() == Pair.Location.PLAYER_ONE_HAND && selectedCards.contains(p)) {
-                    p.set_location(Pair.Location.PLAYER_ONE_UPPER_PALACE);
+                if (p.get_location() == PLAYER_ONE_HAND && selectedCards.contains(p)) {
+                    p.set_location(PLAYER_ONE_UPPER_PALACE);
                     return true;
                 }
             }
         }
         else if(playerID==2){
             for (Pair p : the_deck) {
-                if (p.get_location() == Pair.Location.PLAYER_TWO_HAND && selectedCards.contains(p)) {
-                    p.set_location(Pair.Location.PLAYER_TWO_UPPER_PALACE);
+                if (p.get_location() == PLAYER_TWO_HAND && selectedCards.contains(p)) {
+                    p.set_location(PLAYER_TWO_UPPER_PALACE);
                     return true;
                 }
             }
@@ -225,27 +220,7 @@ public class GameState {
     //TODO: use get location and set location
 
 
-    public boolean takeDiscardPile(int currentPlayerID) {
 
-
-        for(int i = discardPile.size(); i > 0; i--)
-        {
-            if(currentPlayerID == 1)
-            {
-                discardPile.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
-                discardPile.remove(i);
-            }
-            else if (currentPlayerID == 2)
-            {
-                discardPile.get(i).set_location(Pair.Location.PLAYER_TWO_HAND);
-                discardPile.remove(i);
-            }
-        }
-
-        return false;
-    }//takeDiscardPile
-
-    /*
     public boolean takeDiscardPile(int playerID) {
 
         if (!discardPile.isEmpty()) {
@@ -317,6 +292,10 @@ public class GameState {
 
     private boolean isLegal(Pair selectedCard) {
         if (discardPile.isEmpty()) {
+            return true;
+        }
+
+        else if (discardPile.get(discardPile.size()-1).get_card().getRank() == Rank.TWO) {
             return true;
         }
 
