@@ -50,9 +50,11 @@ public class GameState {
      */
     private void initialize_the_deck()
     {
-        for(int i = Rank.THREE_INT; i <= Rank.TEN_INT; i++)
-            for(int j = Suit.SPADES_INT; j <= Suit.HEARTS_INT; j++)
+        for(int i = Rank.THREE_INT; i <= Rank.TEN_INT; i++) {
+            for (int j = Suit.SPADES_INT; j <= Suit.HEARTS_INT; j++) {
                 the_deck.add(new Pair(new Card(Rank.int_to_rank(i), Suit.int_to_suit(j)), Location.DRAW_PILE));
+            }
+        }
     }
 
     /**
@@ -218,13 +220,14 @@ public class GameState {
             return true;
         }
 
+        else if (discardPile.get(discardPile.size()-1).get_card().getRank() == Rank.SEVEN && (selectedCard.get_card().getRank().get_int_value() <= Rank.SEVEN_INT)) {
+            return true;
+        }
+
         else if (discardPile.get(discardPile.size()-1).get_card().getRank().get_int_value() <= selectedCard.get_card().getRank().get_int_value()) {
             return true;
         }
 
-        else if (discardPile.get(discardPile.size()-1).get_card().getRank() == Rank.SEVEN && (selectedCard.get_card().getRank().get_int_value() <= Rank.SEVEN_INT)) {
-            return true;
-        }
         return false;
     }
 
@@ -240,7 +243,30 @@ public class GameState {
         }
     }
 
-   /* public String toString() {
+    public String toString() {
         //TODO implement toString method which converts all of GameState's data to a String
-    }*/
+        String gameStateString = "";
+
+        gameStateString += "Turn is: " + turn + "\n";
+
+        gameStateString += "Deck contains:\n";
+
+        for (Pair p : the_deck) {
+            gameStateString += p.toString() + "\n";
+        }
+
+        gameStateString += "Discard pile contains:\n";
+
+        for (Pair p : discardPile) {
+            gameStateString += p.toString() + "\n";
+        }
+
+        gameStateString += "Selected cards contains:\n";
+
+        for (Pair p : selectedCards) {
+            gameStateString += p.toString() + "\n";
+        }
+
+        return gameStateString;
+    }
 }
