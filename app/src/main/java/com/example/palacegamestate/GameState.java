@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static com.example.palacegamestate.Location.DISCARD_PILE;
+import static com.example.palacegamestate.Location.DRAW_PILE;
 import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
 import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
 import static com.example.palacegamestate.Location.PLAYER_TWO_HAND;
@@ -35,7 +36,6 @@ public class GameState {
     private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private ArrayList<Pair> selectedCards = new ArrayList<>();
     private ArrayList<Pair> discardPile = new ArrayList<>();
-    private ArrayList<Pair> hand1 = new ArrayList<>();
     private ArrayList<Pair> hand2 = new ArrayList<>();
     //player 1 lower palace, player 2 lower palace
     private ArrayList<Pair> player1LP = new ArrayList<>();
@@ -56,7 +56,7 @@ public class GameState {
         shuffleTheDeck();
         // TODO: dealTheDeck();
         turn = 0;
-        dealTheDeck(hand1, hand2, player1LP, player2LP, player1UP, player2UP);
+        dealTheDeck();
 
     }
 
@@ -165,7 +165,7 @@ public class GameState {
          * hand that will be changed with the palacecards*/
         if(playerID == 1){
             for(Pair p: the_deck){
-                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
+                if(p.get_location() == PLAYER_ONE_UPPER_PALACE){
                     p.set_location(PLAYER_ONE_HAND);
                     return true;
                 }
@@ -173,7 +173,7 @@ public class GameState {
         }
         if(playerID == 2){
             for(Pair p: the_deck){
-                if(p.get_location()== PLAYER_TWO_UPPER_PALACE){
+                if(p.get_location() == PLAYER_TWO_UPPER_PALACE){
                     p.set_location(PLAYER_TWO_HAND);
                     return true;
                 }
@@ -182,7 +182,7 @@ public class GameState {
         return false;
     }
 
-    }
+
     /**
      * confirmPalace
      *
@@ -220,31 +220,6 @@ public class GameState {
      *
      * @return true if discard pile isn't empty and the method was called by a valid player
      */
-    //TODO: Mere, change the location in the Pair class of the cards from the discard ArrayList to the user's hand
-    //TODO: use get location and set location
-
-
-    public boolean takeDiscardPile(int currentPlayerID) {
-
-
-        for(int i = discardPile.size(); i > 0; i--)
-        {
-            if(currentPlayerID == 1)
-            {
-                discardPile.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
-                discardPile.remove(i);
-            }
-            else if (currentPlayerID == 2)
-            {
-                discardPile.get(i).set_location(Pair.Location.PLAYER_TWO_HAND);
-                discardPile.remove(i);
-            }
-        }
-
-        return false;
-    }//takeDiscardPile
-
-    /*
     public boolean takeDiscardPile(int playerID) {
 
         if (!discardPile.isEmpty()) {
@@ -273,46 +248,46 @@ public class GameState {
             }
         }
         return false;
-    }
-    */
+    }//takeDiscardPile
+
 
 
     /**
      * dealTheDeck method that draws cards in for the hands
-     * @param hand1, hand2
+     * @param
      */
     //this method is done
-    public void dealTheDeck(ArrayList<Pair> hand1, ArrayList<Pair> hand2, ArrayList<Pair> player1LP, ArrayList<Pair> player2LP, ArrayList<Pair> player1UP, ArrayList<Pair> player2UP)
+    public void dealTheDeck()
     {
-        //deals each hand
-        while (hand1.size() < 5)
-        {
-            hand1.add(0,the_deck.get(0));
-            the_deck.remove(0);
-        }
-        while (hand2.size() < 5)
-        {
-            hand2.add(0,the_deck.get(0));
-            the_deck.remove(0);
-        }
 
-        for(int i = 0; i<3; i++)
-        {
+        for(int i = 0; i <52; i++) {
 
-            player1LP.add(0, the_deck.get(0));
-            player2LP.add(0, the_deck.get(1));
-            player1UP.add(0, the_deck.get(2));
-            player2UP.add(0, the_deck.get(3));
+            if(i < 10) {
 
-
-            for(int j = 0; j<4; j++)
-            {
-                the_deck.remove(0);
+                if(i%2 == 0) {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
+                }
+                else {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_TWO_HAND);
+                }
+            }
+            if(10<=i && i<16) {
+                if(i%2 == 0) {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_ONE_LOWER_PALACE);
+                }
+                else {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_TWO_LOWER_PALACE);
+                }
+            }
+            if(16<= i && i <22) {
+                if(i%2 == 0) {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_ONE_UPPER_PALACE);
+                }
+                else {
+                    the_deck.get(i).set_location(Pair.Location.PLAYER_TWO_UPPER_PALACE);
+                }
             }
         }
-
-
-
     }//dealTheDeck
 
     private boolean isLegal(Pair selectedCard) {
