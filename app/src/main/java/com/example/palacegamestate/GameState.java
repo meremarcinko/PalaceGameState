@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static com.example.palacegamestate.Location.DISCARD_PILE;
-import static com.example.palacegamestate.Location.DRAW_PILE;
 import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
 import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
 import static com.example.palacegamestate.Location.PLAYER_TWO_HAND;
@@ -36,6 +35,7 @@ public class GameState {
     private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
     private ArrayList<Pair> selectedCards = new ArrayList<>();
     private ArrayList<Pair> discardPile = new ArrayList<>();
+    private ArrayList<Pair> hand1 = new ArrayList<>();
     private ArrayList<Pair> hand2 = new ArrayList<>();
     //player 1 lower palace, player 2 lower palace
     private ArrayList<Pair> player1LP = new ArrayList<>();
@@ -165,7 +165,7 @@ public class GameState {
          * hand that will be changed with the palacecards*/
         if(playerID == 1){
             for(Pair p: the_deck){
-                if(p.get_location() == PLAYER_ONE_UPPER_PALACE){
+                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
                     p.set_location(PLAYER_ONE_HAND);
                     return true;
                 }
@@ -173,7 +173,7 @@ public class GameState {
         }
         if(playerID == 2){
             for(Pair p: the_deck){
-                if(p.get_location() == PLAYER_TWO_UPPER_PALACE){
+                if(p.get_location()== PLAYER_TWO_UPPER_PALACE){
                     p.set_location(PLAYER_TWO_HAND);
                     return true;
                 }
@@ -182,7 +182,7 @@ public class GameState {
         return false;
     }
 
-
+    }
     /**
      * confirmPalace
      *
@@ -288,6 +288,9 @@ public class GameState {
                 }
             }
         }
+
+
+
     }//dealTheDeck
 
     private boolean isLegal(Pair selectedCard) {
