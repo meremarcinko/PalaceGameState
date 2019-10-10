@@ -165,16 +165,16 @@ public class GameState {
          * hand that will be changed with the palacecards*/
         if(playerID == 1){
             for(Pair p: the_deck){
-                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
-                    p.set_location(PLAYER_ONE_HAND);
+                if(p.get_location()== Pair.Location.PLAYER_ONE_UPPER_PALACE){
+                    p.set_location(Pair.Location.PLAYER_ONE_HAND);
                     return true;
                 }
             }
         }
         if(playerID == 2){
             for(Pair p: the_deck){
-                if(p.get_location()== PLAYER_TWO_UPPER_PALACE){
-                    p.set_location(PLAYER_TWO_HAND);
+                if(p.get_location()== Pair.Location.PLAYER_TWO_UPPER_PALACE){
+                    p.set_location(Pair.Location.PLAYER_TWO_HAND);
                     return true;
                 }
             }
@@ -182,7 +182,7 @@ public class GameState {
         return false;
     }
 
-    }
+
     /**
      * confirmPalace
      *
@@ -194,16 +194,16 @@ public class GameState {
     public boolean confirmPalace(int playerID) {
         if (playerID == 1) {
             for (Pair p : the_deck) {
-                if (p.get_location() == PLAYER_ONE_HAND && selectedCards.contains(p)) {
-                    p.set_location(PLAYER_ONE_UPPER_PALACE);
+                if (p.get_location() == Pair.Location.PLAYER_ONE_HAND && selectedCards.contains(p)) {
+                    p.set_location(Pair.Location.PLAYER_ONE_UPPER_PALACE);
                     return true;
                 }
             }
         }
         else if(playerID==2){
             for (Pair p : the_deck) {
-                if (p.get_location() == PLAYER_TWO_HAND && selectedCards.contains(p)) {
-                    p.set_location(PLAYER_TWO_UPPER_PALACE);
+                if (p.get_location() == Pair.Location.PLAYER_TWO_HAND && selectedCards.contains(p)) {
+                    p.set_location(Pair.Location.PLAYER_TWO_UPPER_PALACE);
                     return true;
                 }
             }
