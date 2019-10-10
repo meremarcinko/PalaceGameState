@@ -36,6 +36,14 @@ public class GameState {
     private ArrayList<Pair> selectedCards = new ArrayList<>();
     private ArrayList<Pair> discardPile = new ArrayList<>();
     private ArrayList<Pair> hand1 = new ArrayList<>();
+    private ArrayList<Pair> hand2 = new ArrayList<>();
+    //player 1 lower palace, player 2 lower palace
+    private ArrayList<Pair> player1LP = new ArrayList<>();
+    private ArrayList<Pair> player2LP = new ArrayList<>();
+    //player 1 upper palace, player 2 upper palace
+    private ArrayList<Pair> player1UP = new ArrayList<>();
+    private ArrayList<Pair> player2UP = new ArrayList<>();
+
     private int turn;
     private ArrayList<Pair> selectedCards = new ArrayList<>();
 
@@ -48,7 +56,8 @@ public class GameState {
         shuffleTheDeck();
         // TODO: dealTheDeck();
         turn = 0;
-        drawCards(hand1);
+        dealTheDeck(hand1, hand2, player1LP, player2LP, player1UP, player2UP);
+
     }
 
     /**
@@ -270,17 +279,41 @@ public class GameState {
 
     /**
      * dealTheDeck method that draws cards in for the hands
-     * @param hand
+     * @param hand1, hand2
      */
     //this method is done
-    public void dealTheDeck(ArrayList<Pair> hand)
+    public void dealTheDeck(ArrayList<Pair> hand1, ArrayList<Pair> hand2, ArrayList<Pair> player1LP, ArrayList<Pair> player2LP, ArrayList<Pair> player1UP, ArrayList<Pair> player2UP)
     {
-        while (hand.size() < 5)
+        //deals each hand
+        while (hand1.size() < 5)
         {
-            hand.add(0,the_deck.get(0));
+            hand1.add(0,the_deck.get(0));
             the_deck.remove(0);
         }
-    }
+        while (hand2.size() < 5)
+        {
+            hand2.add(0,the_deck.get(0));
+            the_deck.remove(0);
+        }
+
+        for(int i = 0; i<3; i++)
+        {
+
+            player1LP.add(0, the_deck.get(0));
+            player2LP.add(0, the_deck.get(1));
+            player1UP.add(0, the_deck.get(2));
+            player2UP.add(0, the_deck.get(3));
+
+
+            for(int j = 0; j<4; j++)
+            {
+                the_deck.remove(0);
+            }
+        }
+
+
+
+    }//dealTheDeck
 
     private boolean isLegal(Pair selectedCard) {
         if (discardPile.isEmpty()) {
