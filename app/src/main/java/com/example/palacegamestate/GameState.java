@@ -1,15 +1,16 @@
 package com.example.palacegamestate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
-import static com.example.palacegamestate.Location.DISCARD_PILE;
-import static com.example.palacegamestate.Location.PLAYER_ONE_HAND;
-import static com.example.palacegamestate.Location.PLAYER_ONE_UPPER_PALACE;
-import static com.example.palacegamestate.Location.PLAYER_TWO_HAND;
-import static com.example.palacegamestate.Location.PLAYER_TWO_UPPER_PALACE;
+
+import static com.example.palacegamestate.Pair.Location.DEAD_PILE;
+import static com.example.palacegamestate.Pair.Location.DISCARD_PILE;
+import static com.example.palacegamestate.Pair.Location.DRAW_PILE;
+import static com.example.palacegamestate.Pair.Location.PLAYER_ONE_HAND;
+import static com.example.palacegamestate.Pair.Location.PLAYER_ONE_UPPER_PALACE;
+import static com.example.palacegamestate.Pair.Location.PLAYER_TWO_HAND;
+import static com.example.palacegamestate.Pair.Location.PLAYER_TWO_UPPER_PALACE;
 
 /*Within the same package as the MainActivity class, create a new game state
 class for your game. (Eventually this class will be a subclass of the GameState class in
@@ -33,12 +34,9 @@ state (e.g., a playing card, a pawn, a tile, etc.)*/
 public class GameState {
 
     private ArrayList<Pair> the_deck = new ArrayList<Pair>(52);
-    private ArrayList<Pair> selectedCards = new ArrayList<>();
-    private ArrayList<Pair> discardPile = new ArrayList<>();
-    private ArrayList<Pair> hand1 = new ArrayList<>();
     private int turn;
     private ArrayList<Pair> selectedCards = new ArrayList<>();
-
+    private ArrayList<Pair> discardPile = new ArrayList<>();
 
     /**
      * Constructor for the objects in the GameState
@@ -48,23 +46,7 @@ public class GameState {
         shuffleTheDeck();
         // TODO: dealTheDeck();
         turn = 0;
-        drawCards(hand1);
     }
-
-    /**
-     * Deep Copy Constructor
-     *
-     * @param state The one true state of the game, to be copied
-     */
-    public GameState(GameState state)
-    {
-        turn = state.turn;
-    }
-    //TODO: write the deep Copy constructor
-
-    //TODO: write the deal cards methods
-    //TODO: each player should have 5 cards in their hands
-    //TODO: each palace should have 3 decks, with 3 turned down, and a face up on each deck
 
     /**
      *
@@ -73,7 +55,7 @@ public class GameState {
     {
         for(int i = Rank.THREE_INT; i <= Rank.TEN_INT; i++) {
             for (int j = Suit.SPADES_INT; j <= Suit.HEARTS_INT; j++) {
-                the_deck.add(new Pair(new Card(Rank.int_to_rank(i), Suit.int_to_suit(j)), Location.DRAW_PILE));
+                the_deck.add(new Pair(new Card(Rank.int_to_rank(i), Suit.int_to_suit(j)), DRAW_PILE));
             }
         }
     }
@@ -93,8 +75,6 @@ public class GameState {
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
-
-
 
     public boolean selectCards(int playerID, Pair userSelectedCard) {
         if (isLegal(userSelectedCard)) {
@@ -121,10 +101,10 @@ public class GameState {
         for (int i = 0; i < selectedCards.size(); i++) {
             discardPile.add(selectedCards.get(i));
         }
-
+        
         for (Pair p : the_deck) {
             if (selectedCards.contains(p)) {
-                p.set_location(Location.DISCARD_PILE);
+                p.set_location(DISCARD_PILE);
             }
         }
         selectedCards.clear();
@@ -154,7 +134,7 @@ public class GameState {
          * hand that will be changed with the palacecards*/
         if(playerID == 1){
             for(Pair p: the_deck){
-                if(p.get_location()== PLAYER_ONE_UPPER_PALACE){
+                if(p.get_location() == PLAYER_ONE_UPPER_PALACE){
                     p.set_location(PLAYER_ONE_HAND);
                     return true;
                 }
@@ -169,7 +149,6 @@ public class GameState {
             }
         }
         return false;
-    }
 
     }
     /**
@@ -209,20 +188,6 @@ public class GameState {
      *
      * @return true if discard pile isn't empty and the method was called by a valid player
      */
-    //TODO: Mere, change the location in the Pair class of the cards from the discard ArrayList to the user's hand
-    //TODO: use get location and set location
-
-
-    public boolean takeDiscardPile() {
-
-        for(int i = discardPile.size(); i > 0; i--)
-        {
-            discardPile.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
-            discardPile.remove(i);
-        }
-
-
-
     public boolean takeDiscardPile(int playerID) {
 
         if (!discardPile.isEmpty()) {
@@ -253,23 +218,6 @@ public class GameState {
         return false;
     }
 
-        return false;
-    }//takeDiscardPile
-
-    /**
-     * drawCards method that draws cards in for the hands
-     * @param hand
-     */
-    //I do not think that this method is done
-    public void drawCards(ArrayList<Pair> hand)
-    {
-        while (hand.size() < 5)
-        {
-            hand.add(0,hand.get(0));
-            the_deck.remove(0);
-        }
-    }
-
     private boolean isLegal(Pair selectedCard) {
         if (discardPile.isEmpty()) {
             return true;
@@ -292,8 +240,8 @@ public class GameState {
     private void bombDiscardPile () {
         discardPile.clear();
         for (Pair p : the_deck) {
-            if (p.get_location() == Location.DISCARD_PILE) {
-                p.set_location(Location.DEAD_PILE);
+            if (p.get_location() == DISCARD_PILE) {
+                p.set_location(DEAD_PILE);
             }
         }
     }
