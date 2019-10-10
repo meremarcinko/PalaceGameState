@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/stateDisplay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:ems="10"
@@ -18,6 +18,7 @@
         android:id="@+id/createState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Create State"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,7 +54,7 @@ public class GameState {
         shuffleTheDeck();
         // TODO: dealTheDeck();
         turn = 0;
-        dealTheDeck(hand1, hand2, player1LP, player2LP, player1UP, player2UP);
+        //dealTheDeck(hand1, hand2, player1LP, player2LP, player1UP, player2UP);
 
     }
 
