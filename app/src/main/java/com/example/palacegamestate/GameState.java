@@ -78,6 +78,8 @@ public class GameState {
         }
     }
 
+
+
     /**
      * shuffle Deck
      *
@@ -213,16 +215,27 @@ public class GameState {
     //TODO: use get location and set location
 
 
-    public boolean takeDiscardPile() {
+    public boolean takeDiscardPile(int currentPlayerID) {
+
 
         for(int i = discardPile.size(); i > 0; i--)
         {
-            discardPile.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
-            discardPile.remove(i);
+            if(currentPlayerID == 1)
+            {
+                discardPile.get(i).set_location(Pair.Location.PLAYER_ONE_HAND);
+                discardPile.remove(i);
+            }
+            else if (currentPlayerID == 2)
+            {
+                discardPile.get(i).set_location(Pair.Location.PLAYER_TWO_HAND);
+                discardPile.remove(i);
+            }
         }
 
+        return false;
+    }//takeDiscardPile
 
-
+    /*
     public boolean takeDiscardPile(int playerID) {
 
         if (!discardPile.isEmpty()) {
@@ -252,20 +265,19 @@ public class GameState {
         }
         return false;
     }
+    */
 
-        return false;
-    }//takeDiscardPile
 
     /**
-     * drawCards method that draws cards in for the hands
+     * dealTheDeck method that draws cards in for the hands
      * @param hand
      */
-    //I do not think that this method is done
-    public void drawCards(ArrayList<Pair> hand)
+    //this method is done
+    public void dealTheDeck(ArrayList<Pair> hand)
     {
         while (hand.size() < 5)
         {
-            hand.add(0,hand.get(0));
+            hand.add(0,the_deck.get(0));
             the_deck.remove(0);
         }
     }
