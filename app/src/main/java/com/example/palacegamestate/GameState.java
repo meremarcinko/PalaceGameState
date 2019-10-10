@@ -38,7 +38,7 @@ public class GameState {
     private ArrayList<Pair> hand1 = new ArrayList<>();
     private int turn;
     private ArrayList<Pair> selectedCards = new ArrayList<>();
-    private ArrayList<Pair> discardPile = new ArrayList<>();
+
 
     /**
      * Constructor for the objects in the GameState
@@ -93,6 +93,8 @@ public class GameState {
        ◦ verify the move is a legal move for the current game state. If it’s not, return false.
        ◦ modify the game state to reflect that a given player has taken that action. Then, return true.
     */
+
+
 
     public boolean selectCards(int playerID, Pair userSelectedCard) {
         if (isLegal(userSelectedCard)) {
