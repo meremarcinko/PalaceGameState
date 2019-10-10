@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
 
 
-    private EditText stateDisplay;
+    private EditText stateDisplay;//test comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
