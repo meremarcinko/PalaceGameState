@@ -4,6 +4,14 @@ import android.util.Log;
 
 public class Pair
 {
+	//made this public from private to be able to access the locations of the hands
+	public enum Location
+	{
+		PLAYER_ONE_HAND, PLAYER_ONE_UPPER_PALACE, PLAYER_ONE_LOWER_PALACE,
+		PLAYER_TWO_HAND, PLAYER_TWO_UPPER_PALACE, PLAYER_TWO_LOWER_PALACE,
+		DRAW_PILE,       DISCARD_PILE,            DEAD_PILE
+	}
+
 	private Card card;
 	private Location location;
 
